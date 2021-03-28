@@ -47,7 +47,19 @@
       "endpoint": "/post-backend-1",
       "method": "POST",
       "output_encoding": "json",
-      "extra_config": {},
+      "extra_config":{
+        "github.com/devopsfaith/krakend-jsonschema": {
+          "type": "object",
+          "properties": {
+            "number": { "type": "number" },
+            "street_name": { "type": "string" },
+            "street_type": { "type": "string",
+              "enum": ["Street", "Avenue", "Boulevard"]
+            }
+          },
+          "required": ["number","street_name", "street_type"]
+        }
+      },
       "backend": [
         {
           "url_pattern": "/",
