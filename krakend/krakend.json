@@ -92,6 +92,33 @@
           "disable_host_sanitize": false
         }
       ]
+    },
+    {
+      "endpoint": "/rabbit-mq",
+      "method": "POST",
+      "backend": [
+        {
+          "host": [
+            "amqp://krakend_poc:krakend_poc@rabbitmq:5672"
+          ],
+          "disable_host_sanitize": true,
+          "extra_config": {
+            "github.com/devopsfaith/krakend-amqp/produce": {
+              "name": "test-queue",
+              "exchange": "test-exchange",
+              "durable": true,
+              "delete": false,
+              "exclusive": false,
+              "no_wait": true,
+              "mandatory": true,
+              "immediate": false
+            },
+            "github.com/devopsfaith/krakend/http": {
+              "return_error_details": "backend_rabbitmq"
+            }
+          }
+        }
+      ]
     }
   ]
 }

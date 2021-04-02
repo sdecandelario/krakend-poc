@@ -25,3 +25,12 @@ services:
       - "8090:8090"
     depends_on:
       - jaeger
+  rabbitmq:
+    image: 'rabbitmq:3.7-management'
+    restart: unless-stopped
+    ports:
+      - 5630:5672
+      - 8100:15672
+    environment:
+      - RABBITMQ_DEFAULT_USER=krakend_poc
+      - RABBITMQ_DEFAULT_PASS=krakend_poc
